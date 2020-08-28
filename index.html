@@ -37,8 +37,12 @@
             });
 
         function tick() {
-            canvasElement.height = video.videoHeight;
-            canvasElement.width = video.videoWidth;
+            const urlParams = new URLSearchParams(location.search);
+            const width = urlParams.get("w") ? urlParams.get("w") : video.videoWidth;
+            const height = urlParams.get("h") ? urlParams.get("h") : video.videoHeight;
+            canvasElement.width = width;
+            canvasElement.height = height;
+
             canvas.drawImage(video, 0, 0, canvasElement.width, canvasElement.height);
 
             requestAnimationFrame(tick);
