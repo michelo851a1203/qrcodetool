@@ -6,9 +6,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <script src="./qr_packed.js"></script>
+    <style>
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100px;
+        }
+    </style>
 </head>
 
-<body>
+<body style="overflow:hidden;">
 
     <div>
         <canvas id="qr-canvas"></canvas>
@@ -39,7 +48,8 @@
         function tick() {
             const urlParams = new URLSearchParams(location.search);
             const width = urlParams.get("w") ? urlParams.get("w") : video.videoWidth;
-            const height = urlParams.get("h") ? urlParams.get("h") : video.videoHeight;
+            const ratio = video.videoHeight / video.videoWidth
+            const height = width * ratio
             canvasElement.width = width;
             canvasElement.height = height;
 
